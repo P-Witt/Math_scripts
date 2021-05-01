@@ -238,15 +238,22 @@ We know that $(S_n)$ is a Cauchy sequence.
             s_n, s_n<0\\
             0  , s_n \geq 0
             \end{cases}\\
-    S^+_n = \sum_{k=1}^n \mid s^+_n \mid , S^-_n = \sum_{k=1}^n \mid s^-_n\mid
+    S^+_n = \sum_{k=1}^n s^+_n  , S^-_n = \sum_{k=1}^n  s^-_n
 \end{gather*}
 \underline{Proof:}
 \begin{gather*}
-    \mid s^+_n \mid < \mid s_n \mid, \mid s^-_n \mid < \mid s_n \mid
+    \mid s^+_n \mid \leq \mid s_n \mid, \mid s^-_n \mid \leq \mid s_n \mid
 \end{gather*}
 \underline{Riemann rearrangement theorem:} For an absolutely convergent series, if you rearrange the order of the elements $(s_n)$ the limit does \underline{not} change.
 \begin{gather*}
     \sum_{k=1}^\infty s_n = \sum_{k=1}^\infty s_{\sigma(n)}, \sigma(n): \mathbb{N} \to \mathbb{N}, \sigma \text{ bijective}
+\end{gather*}
+\underline{Proof:}\\
+\begin{gather*}
+    \lim_{n \to \infty} S^+_{\sigma (n)} = \lim_{n \to \infty} S^+_n\\
+    \lim_{n \to \infty} S^-_{\sigma (n)} = \lim_{n \to \infty} S^-_n\\
+    \lim_{n \to \infty} S^+_n + S^-_n = \lim_{n \to \infty} S_n \\
+    \lim_{n \to \infty} S^+_{\sigma (n)} + S^-_{\sigma (n)} = \lim_{n \to \infty} S^+_n + S^-_n = \lim_{n \to \infty} S_n
 \end{gather*}
 \subsection{Construction of the exponential function}
 \end{document}
