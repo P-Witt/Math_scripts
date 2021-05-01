@@ -1,0 +1,252 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts} 
+\usepackage{amssymb}
+\title{Analysis 1}
+\author{Paulo Witt }
+\date{2021}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+This is a general summary of the Analysis 1 course I attended. Prerequisites are the general knowledge of arithmetic's and proofing techniques.
+\section{Prerequisites}
+In this section I will go over two proofs necessary for the following course.
+\subsection{Bernoulli's inequality}
+\underline{Theorem:}
+\begin{gather*}
+    (1 +x)^n \geq 1 + nx, n \in \mathbb{N}, x \geq -1 
+\end{gather*}
+\underline{Proof:}\\
+This Proof will use induction.\\\\
+\underline{Proposition:}
+\begin{gather*}
+    n = 0\\
+    (1+x)^0 = 1 \land 1 + 0x = 1 \\
+    \exists_{n \in \mathbb{N}}: (1+x)^n \geq 1 + x
+\end{gather*}
+\underline{Inductive step:}
+\begin{gather*}
+    (1 +x)^{n+1} = (1+x)(1+x)^n \geq (1+x)(1+nx)\\
+    (1+x)(1+nx) = 1 +x + nx+ nx^2 = (1 + (n+1)x) + nx^2\\
+    nx^2 \geq 0 \implies (1+x)^{n+1} \geq 1 + (n+1)x, \forall n>0,\forall x \in \mathbb{R}\\
+\end{gather*}
+\subsection{Binomial theorem}
+\underline{Theorem:}
+\begin{gather*}
+    (a+b)^n = \sum_{k=0}^n \binom{n}{k} a^k b^{n-k}\\
+\end{gather*}
+\underline{Proof:}\\
+Note that:
+\begin{gather*}
+    \binom{n}{k}\binom{n}{k-1} = \binom{n+1}{k}\\
+    \binom{n}{k} = 0, k>n, k<0
+\end{gather*}
+Using induction.\\
+\underline{Proposition:}
+\begin{gather*}
+    n= 0
+    (a+b)^0 = 1, \sum_{k=0}^0 \binom{n}{k} a^k b^{n-k} = \binom{0}{0}a^0 b^0 = 1\\
+    \exists_{n \in \mathbb{N}}:(a+b)^n = \sum_{k = 0}^n \binom{n}{k} a^k b^{n-k}
+\end{gather*}
+\underline{Inductive Step:}
+\begin{gather*}
+    (a+b)^{n+1} = (a+b)(a+b)^n = (a+b) \sum_{k = 0}^n \binom{n}{k} a^k b^{n-k}\\
+    = a\sum_{k = 0}^n \binom{n}{k} a^k b^{n-k} + b\sum_{k = 0}^n \binom{n}{k} a^k b^{n-k} =
+    \sum_{k = 0}^n \binom{n}{k} a^{k+1} b^{n-k} + \sum_{k = 0}^n \binom{n}{k} a^k b^{n+1-k}\\
+\end{gather*}
+\begin{gather*}
+    \text{Set} \sum_{k = 0}^n \binom{n}{k} a^k b^{n+1-k} = \sum_{k = 0}^n \binom{n}{k} a^k b^{n+1-k} +
+    \binom{n+1}{k}a^{n+1}b^0 = 
+    \sum_{k = 0}^{n+1} \binom{n}{k} a^k b^{n+1-k}\\
+    \text{and} 
+    \sum_{k = 0}^n \binom{n}{k} a^{k+1} b^{n-k} =
+    \sum_{k = 1}^{n+1} \binom{n}{k} a^{k} b^{n+1-k} =
+    \sum_{k = 0}^{n+1} \binom{n}{k} a^{k} b^{n+1-k}
+\end{gather*}
+\begin{gather*}
+    \sum_{k= 0}^{n+1} \binom{n}{k}\binom{n}{k-1} a^k b^{n+1-k} =     \sum_{k= 0}^{n+1} \binom{n+1}{k} a^k  b^{n+1-k} 
+\end{gather*}
+\newpage
+\section{Convergence of sequences and series}
+\subsection{Definitions}
+\underline{Def:} A sequence $(a_n)_{n\in \mathbb{N}}$ or in short form $(a_n)$ us a function from the natural numbers to the real or rational numbers, $a:\mathbb{N} \xrightarrow[]{} \mathbb{R}$ or $\mathbb{Q}$.
+\\\\
+\underline{Def:} A sequence is bounded, iff:
+\begin{gather*}
+    \exists_{c \in \mathbb{R}}: \forall_{n \in \mathbb{N}}: \mid a_n\mid < c.
+\end{gather*}
+\underline{Def:} A sequence is: 
+\begin{gather*}
+    \text{strictly monotone increasing, iff:  } \forall_{n \in \mathbb{N}}: a_n < a_{n+1}\\
+    \text{strictly monotone decreasing, iff:  } \forall_{n \in \mathbb{N}}: a_n > a_{n+1}\\
+    \text{monotone increasing, iff:  } \forall_{n \in \mathbb{N}}: a_n \leq a_{n+1}\\
+    \text{monotone decreasing, iff:  } \forall_{n \in \mathbb{N}}: a_n \leq a_{n+1}
+\end{gather*}
+\underline{Def:} A sequence is convergent:
+\begin{gather*}
+    \forall_{\epsilon > 0}:\exists_{n_0 \in \mathbb{N}}: \forall_{n \geq n_0}: \mid a_n - a\mid < \epsilon \iff\\  \lim_{n \to \infty} a_n = a \iff \\
+    a_n \xrightarrow[]{n \to \infty} a
+\end{gather*}
+\underline{Note:} The Limit is unique.\\
+\underline{Proof:}\\
+Suppose:
+\begin{gather*}
+    \lim_{n \to \infty} a_n = a \land \lim_{n \to \infty} a_n = b \land  \mid a-b\mid \neq 0\\
+    \text{Set: } \epsilon = \frac{\mid a -b \mid}{4}\\
+    \exists_{n_1 \in \mathbb{N}}: \forall_{n>n_1}: \mid a_n - a\mid < \epsilon \land 
+    \exists_{n_2 \in \mathbb{N}}: \forall_{n>n_2}: \mid a_n - b\mid < \epsilon\\
+    \text{Choose: } n_0 = \max \{n_1, n_2\}\\
+    \mid a -b \mid = \mid a +(a_n - a_n) + b\mid \leq \mid a_n -a\mid + \mid a_n -b\mid\\
+    \forall_{n>n_0}: \mid a_n -a\mid + \mid a_n -b\mid \leq \epsilon + \epsilon\\
+    \mid a - b \mid \leq \frac{\mid a - b \mid}{2} \bot
+\end{gather*}
+\underline{Note:} Every convergent sequence is bounded.\\
+\underline{Proof:}
+\begin{gather}
+    \text{Set: } \epsilon = 1, \exists_{n_0 \in \mathbb{N}}: \forall_{n>n_0}: \mid a_n - a\mid < 1\\
+    \forall_{n\geq n_0}: \mid a_n \mid < \mid a \mid +1\\
+    c := \max \{ \mid a_1\mid, \mid a_2 \mid, ... , \mid a_{n_0-1}\mid, \mid a\mid +1 \} 
+\end{gather}
+\subsection{General arithmetic's for convergent sequences}
+For all convergent sequences $(a_n), (b_n)$ holds: 
+\begin{gather*}
+    \forall_{(a_n),(b_n)}: \lim_{n \to \infty} a_n = a \land \lim_{n \to \infty} b_n = b:\\
+    \lim_{n \to \infty} a_n + b_n = a+b \\
+    \lim_{n \to \infty} a_n b_n = ab 
+\end{gather*}
+\underline{Proof: } \\
+\begin{gather*}
+    \lim_{n \to \infty} a_n + b_n = a+b  \iff \\
+    \forall_{\epsilon > 0}: \exists_{n_0 \in \mathbb{N}}: \forall_{n\geq n_0} \mid a_n +b_n - (a+b)\mid < \epsilon\\
+    \mid a_n +b_n - (a+b)\mid \leq \mid a_n -a\mid + \mid b_n - b\mid\\
+    \exists_{n_1 \in \mathbb{N}}: \forall_{n\geq n_1} \mid a_n -a\mid < \frac{\epsilon}{2} \land 
+    \exists_{n_2 \in \mathbb{N}}: \forall_{n\geq n_2} \mid b_n -b\mid < \frac{\epsilon}{2}\\
+    n_0 := \max \{n_1,n_2 \} \\
+    \forall_{n\geq n_0}: \mid a_n -a\mid + \mid b_n - b\mid < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon
+\end{gather*}
+\begin{gather*}
+        \lim_{n \to \infty} a_n b_n = ab \iff\\
+        \forall_{\epsilon > 0}: \exists_{n_0 \in \mathbb{N}}: \forall_{n\geq n_0} \mid a_n b_n - (ab)\mid < \epsilon  \\
+        \mid a_n b_n - (ab)\mid = \mid a_n b_n +(-ab_n + ab_n) - ab\mid = \\
+        \mid b_n(a_n-a) + a(b_n-b)\mid \leq \mid (a_n -a)b_n \mid + \mid(b_n-b)a\mid = \\
+        \mid a_n - a \mid \mid b_n \mid + \mid b_n -b\mid\mid a  \mid\\
+        \text{Set: } c \text{ so } c > \mid b_n \mid, n \in \mathbb{N}\\
+        \exists_{n_1 \in \mathbb{N}}: \forall_{n\geq n_1} \mid a_n -a\mid < \frac{\epsilon}{2c} \land 
+        \exists_{n_2 \in \mathbb{N}}: \forall_{n\geq n_2} \mid b_n -b\mid < \frac{\epsilon}{\mid 2a \mid }\\
+        n_0 := \max \{n_1,n_2 \} \\
+        \forall_{n\geq n_0}:  \mid a_n - a \mid \mid b_n \mid + \mid b_n -b\mid\mid a  \mid <
+        \mid b_n \mid\frac{\epsilon }{2c} +  \mid a \mid\frac{\epsilon}{2\mid a \mid} < \epsilon
+\end{gather*}
+\subsection{Cauchy series}
+\underline{Def:} $(a_n)$ is a Cauchy-series, iff
+\begin{gather*}
+    \forall_{\epsilon > 0}: \exists_{n_0 \in \mathbb{N}}:\forall_{n,m > n_0}: \mid a_n -a_m\mid < \epsilon
+\end{gather*}
+\subsection{Construction of the real numbers}
+We are now able to define the real numbers as a Equivalence class of class of Cauchy series. We consider the set of all the Cauchy series  $X$ and define a equivalence relation:
+\begin{gather*}
+    (a_n) \sim  (b_n) \iff \lim_{n \to \infty} a_n - b_n  = 0
+\end{gather*}
+and define the set of real numbers $\mathbb{R}$ as all the sets of all equivalence classes $S((a_n))$: 
+\begin{gather*}
+    S((a_n)) = \{ (x_n) \in X, (x_n) \sim (a_n) \}
+\end{gather*}
+\underline{Showing that $(a_n) \sim (b_n)$ is a equivalence relation:}
+\begin{gather*}
+    \text{reflexivity: } (a_n) \sim (a_n), \forall_{(a_n) \in X}\\
+    \text{symmetry: } (a_n) \sim (b_n) \implies (b_n) \sim (a_n), \forall_{(a_n),(b_n) \in X}\\
+    \text{transitivity: } (a_n) \sim (b_n) \land (b_n) \sim (c_n) \implies (a_n) \sim (c_n), \forall_{(a_n),(b_n),(c_n) \in X}
+\end{gather*}
+\underline{Proof:}
+\begin{gather*}
+    \text{reflexivity: } a_n - a_n = 0 \xrightarrow[]{n \to \infty} 0\\
+    \text{symmetry: } a_n - b_n \xrightarrow[]{n \to \infty} 0 \iff
+    -1( b_n - a_n) \xrightarrow[]{n \to \infty} -1(0) = 0\\
+    \text{transitivity: } a_n - b_n \xrightarrow[]{n \to \infty} 0 \land b_n - a_n \xrightarrow[]{n \to \infty} 0\\
+    a_n - c_n = a_n -b_n + b_n -c_n \xrightarrow[]{n \to \infty} 0
+\end{gather*}
+We have now shown that this is an equivalence relation and due to the arithmetic's for convergent series we show that all the axioms for the real numbers are given by this set. \\\\
+\underline{Theorem:} Every convergent sequence is a Cauchy sequence.
+\underline{Proof:}
+\begin{gather*}
+    \exists n_0 \in \mathbb{N}: \forall_{n\geq n_0}: \mid a_n -a \mid < \frac{\epsilon}{2} \land 
+    \forall_{m \geq n_0}: \mid a_m - a \mid < \frac{\epsilon}{2} \\
+    \mid a_n -a \mid + \mid a_m -a \mid < \epsilon\\
+    \mid a_n - a \mid + \mid a_m -a \mid = \mid a_n - a \mid + \mid a -a_m \mid \geq \mid a_n -a + a - a_m \mid < \epsilon
+\end{gather*}
+\underline{Theorem:} In $\mathbb{R}$ every Cauchy Sequence converges.\\
+\underline{Proof:} A proof will follow in the coming sections.\\
+\underline{Note:} This holds for all complete fields.
+\subsection{Subsequences and accumulation points}
+\underline{Def:} A subsequence $(a_{n_i})$ is a selection of elements of the sequnce.
+\begin{gather*}
+    (a_{n_i}) = (a_{n_i})_{i \in \mathbb{N}}, \text{with } n_{i+1} > n_i, \forall i \in \mathbb{N}
+\end{gather*}
+\underline{Accumulation Point:} A number h is called an accumulation point, iff 
+\begin{gather*}
+    \forall \epsilon>0: \forall n \in \mathbb{N}: \exists n_0>n: \mid a_{n_0}-h \mid < \epsilon
+\end{gather*}
+\underline{Def:} The maximum and minimum respectively  of a set $X$ is defined as:
+\begin{gather*}
+    \underset{x \in X}{\max} X = a \iff \forall_{ x \in X}: a \geq x\\
+    \underset{x \in X}{\min} X = a \iff \forall_{ x \in X}: a \leq x
+\end{gather*}
+\underline{Def:} The supremum and infimum of a set $X$ is defined as: 
+\begin{gather*}
+    \sup X := max \{x\in \mathbb{R} \mid \forall_{n \in \mathbb{N}}: x \leq a_n \} \\
+    \inf X := min \{x\in \mathbb{R} \mid \forall_{n \in \mathbb{N}}: x \geq a_n \} \\
+\end{gather*}
+\subsection{Infinite series}
+For a sequence $(a_k)$ the sum $\sum_{k=1}^{\infty} a_k $ is called a series.\\
+\underline{Def:} A series is called convergent, iff
+\begin{gather*}
+    \exists_{s \in \mathbb{R}}: \lim_{n \to \infty} \sum_{k = 1 }^{n} a_k = s
+\end{gather*}
+For the following the sequence of partial sums $S_n$ of a sequence $(s_n)$ is defined as: 
+\begin{gather*}
+    S_n := \sum_{k=1}^{\infty} s_k
+\end{gather*}
+\underline{Def:} A sequence is absolutely convergent, iff $(\mid S_n \mid)$ converges.\\
+\underline{Theorem:} If $(S_n)$ converges $(a_n)$ converges to zero.\\
+\underline{Proof:}\\
+We know that $(S_n)$ is a Cauchy sequence.
+\begin{gather*}
+    \forall_{\epsilon>0}:\exists_{n_0 \in \mathbb{N}}: \forall_{n,m > n_0}: \mid S_n - S_m \mid < \epsilon\\
+    \mid S_n - S_m\mid =  \mid \sum_{k = m+1}^{n} s_n \mid < \epsilon\\
+    \mid a_n - 0 \mid = \mid \sum_{k = n}^{n} s_n \mid < \epsilon, \forall n> n_0
+\end{gather*}
+\underline{Theorem:} Comparison test: A series $C_n$ is convergent, if an absolutely convergent series $(A_n)$ exists with:
+\begin{gather*}
+    \forall_{n \in \mathbb{N}}: \mid c_n \mid < \mid a_n\mid 
+\end{gather*}
+\underline{Proof:}
+\begin{gather*}
+    \forall_{\epsilon>0}: \exists_{n_0 \in \mathbb{N}}:\forall_{n,n > n_0}: \mid S_n - S_m\mid < \epsilon\\
+    \mid C_n - C_m \mid < \mid A_n - A_m\mid < \epsilon
+\end{gather*}
+\underline{Lemma:} If $S_n$ is absolutely convergent the two series $S^+_n$ and $S^-_n$ converge, with:
+\begin{gather*}
+    s^+_n = \begin{cases}
+            s_n, s_n>0\\
+            0  , s_n \leq 0
+            \end{cases},
+    s^-_n = \begin{cases}
+            s_n, s_n<0\\
+            0  , s_n \geq 0
+            \end{cases}\\
+    S^+_n = \sum_{k=1}^n \mid s^+_n \mid , S^-_n = \sum_{k=1}^n \mid s^-_n\mid
+\end{gather*}
+\underline{Proof:}
+\begin{gather*}
+    \mid s^+_n \mid < \mid s_n \mid, \mid s^-_n \mid < \mid s_n \mid
+\end{gather*}
+\underline{Riemann rearrangement theorem:} For an absolutely convergent series, if you rearrange the order of the elements $(s_n)$ the limit does \underline{not} change.
+\begin{gather*}
+    \sum_{k=1}^\infty s_n = \sum_{k=1}^\infty s_{\sigma(n)}, \sigma(n): \mathbb{N} \to \mathbb{N}, \sigma \text{ bijective}
+\end{gather*}
+\subsection{Construction of the exponential function}
+\end{document}
