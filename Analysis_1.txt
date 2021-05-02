@@ -201,14 +201,14 @@ We have now shown that this is an equivalence relation and due to the arithmetic
     \inf X := min \{x\in \mathbb{R} \mid \forall_{n \in \mathbb{N}}: x \geq a_n \} \\
 \end{gather*}
 \subsection{Infinite series}
-For a sequence $(a_k)$ the sum $\sum_{k=1}^{\infty} a_k $ is called a series.\\
+For a sequence $(a_k)$ the sum $\sum_{k=0}^{\infty} a_k $ is called a series.\\
 \underline{Def:} A series is called convergent, iff
 \begin{gather*}
-    \exists_{s \in \mathbb{R}}: \lim_{n \to \infty} \sum_{k = 1 }^{n} a_k = s
+    \exists_{s \in \mathbb{R}}: \lim_{n \to \infty} \sum_{k = 0 }^{n} a_k = s
 \end{gather*}
 For the following the sequence of partial sums $S_n$ of a sequence $(s_n)$ is defined as: 
 \begin{gather*}
-    S_n := \sum_{k=1}^{\infty} s_k
+    S_n := \sum_{k=0}^{\infty} s_k
 \end{gather*}
 \underline{Def:} A sequence is absolutely convergent, iff $(\mid S_n \mid)$ converges.\\
 \underline{Theorem:} If $(S_n)$ converges $(a_n)$ converges to zero.\\
@@ -238,7 +238,7 @@ We know that $(S_n)$ is a Cauchy sequence.
             s_n, s_n<0\\
             0  , s_n \geq 0
             \end{cases}\\
-    S^+_n = \sum_{k=1}^n s^+_n  , S^-_n = \sum_{k=1}^n  s^-_n
+    S^+_n = \sum_{k=0}^n s^+_n  , S^-_n = \sum_{k=0}^n  s^-_n
 \end{gather*}
 \underline{Proof:}
 \begin{gather*}
@@ -246,7 +246,7 @@ We know that $(S_n)$ is a Cauchy sequence.
 \end{gather*}
 \underline{Riemann rearrangement theorem:} For an absolutely convergent series, if you rearrange the order of the elements $(s_n)$ the limit does \underline{not} change.
 \begin{gather*}
-    \sum_{k=1}^\infty s_n = \sum_{k=1}^\infty s_{\sigma(n)}, \sigma(n): \mathbb{N} \to \mathbb{N}, \sigma \text{ bijective}
+    \sum_{k=0}^\infty s_n = \sum_{k=0}^\infty s_{\sigma(n)}, \sigma(n): \mathbb{N} \to \mathbb{N}, \sigma \text{ bijective}
 \end{gather*}
 \underline{Proof:}\\
 \begin{gather*}
@@ -255,5 +255,30 @@ We know that $(S_n)$ is a Cauchy sequence.
     \lim_{n \to \infty} S^+_n + S^-_n = \lim_{n \to \infty} S_n \\
     \lim_{n \to \infty} S^+_{\sigma (n)} + S^-_{\sigma (n)} = \lim_{n \to \infty} S^+_n + S^-_n = \lim_{n \to \infty} S_n
 \end{gather*}
+\subsection{Evaluation of infinite series}
+\underline{Comparison test:} A series $C_n$ is convergent, if an absolutely convergent series $(A_n)$ exists with:
+\begin{gather*}
+    \forall_{n \in \mathbb{N}}: \mid c_n \mid < \mid a_n\mid 
+\end{gather*}
+\underline{Generalized ratio test:} A series $(A_n) $ absolutely converges, if 
+\begin{gather*}
+    \exists_{q \in [0,1]}:\exists_{n_0 \in \mathbb{N}}:\forall_{n>n_0}:\mid \frac{a_{n+1}}{a_n} \mid \leq q
+\end{gather*}
+\underline{Lemma:} $\sum_{k=0}^n q^k, q \in (-1,1)$ converges to $\frac{1}{1-q}$\\
+\underline{Proof:}\\
+\underline{Proposition:}
+\begin{gather*}
+    \sum_{k=0}^0 q^k = q^0 = 1 \land \frac{1-q^{n+1}}{1-q} = \frac{1-0^1}{1-0} = 1\\
+    \exists_{n \in \mathbb{N}}: \sum_{k=0}^n q^k = \frac{1-q^{n+1}}{1-q} 
+\end{gather*}
+\underline{Inductive step:}
+\begin{gather*}
+    \sum_{k=0}^{n+1} q^k = \sum_{k=0}^n q^k + q^{n+1} = \frac{1-q^{n+1}}{1-q} +q^{n+1}  = \\
+    \frac{1- q^{n+1} + (1-q)q^{n+1}}{1-q} = \frac{1 - q^{n+1} + q^{n+1} - q^{n+2}}{1-q}
+\end{gather*}
+\begin{gather*}
+    \lim_{n \to \infty} \sum_{k=0}^n = \lim_{n \to \infty} \frac{1-q^{n+1}}{1-q} = \frac{1}{1-q}
+\end{gather*}
+\underline{Proof of the generalized ratio test:}
 \subsection{Construction of the exponential function}
 \end{document}
