@@ -262,10 +262,20 @@ We know that $(S_n)$ is a Cauchy sequence.
 \end{gather*}
 \underline{Generalized ratio test:} A series $(A_n) $ absolutely converges, if 
 \begin{gather*}
-    \exists_{q \in [0,1]}:\exists_{n_0 \in \mathbb{N}}:\forall_{n>n_0}:\mid \frac{a_{n+1}}{a_n} \mid \leq q
+    \exists_{q \in (0,1)}:\exists_{n_0 \in \mathbb{N}}:\forall_{n>n_0}:\mid \frac{a_{n+1}}{a_n} \mid \leq q 
 \end{gather*}
+\underline{Root test:}\\
+A series $(A_n)$ converges absolutely, if
+\begin{gather*}
+    \exists_{q \in (0,1)}:\exists_{n \in \mathbb{N}}\forall_{n>n_0}: \sqrt[n]{\mid a_n \mid} \leq q
+\end{gather*}
+\underline{Leibniz test}:\\
+If $(a_n)$ is monoton decreasing and converges to 0, than the series $S_n$ converges, with:
+\begin{gather*}
+    S_n := \sum_{k=0}^n (-1)^k a_k
+\end{gather*}
+\underline{Proof for generalized ratio test:}\\
 \underline{Lemma:} $\sum_{k=0}^n q^k, q \in (-1,1)$ converges to $\frac{1}{1-q}$\\
-\underline{Proof:}\\
 \underline{Proposition:}
 \begin{gather*}
     \sum_{k=0}^0 q^k = q^0 = 1 \land \frac{1-q^{n+1}}{1-q} = \frac{1-0^1}{1-0} = 1\\
@@ -279,6 +289,19 @@ We know that $(S_n)$ is a Cauchy sequence.
 \begin{gather*}
     \lim_{n \to \infty} \sum_{k=0}^n = \lim_{n \to \infty} \frac{1-q^{n+1}}{1-q} = \frac{1}{1-q}
 \end{gather*}
-\underline{Proof of the generalized ratio test:}
+\begin{gather*}
+    \forall_{n>n_0} \mid \frac{a_{n+1}}{a_n} \mid  \leq q\\
+    \mid a_{n} \mid \leq q\mid a_{n-1} \mid \implies 
+    \mid a_n \mid \leq q^{n-n_0} \mid a_{n_0} \mid\\
+    \sum_{k=0}^\infty \mid a_k \mid  \leq \mid A_{n_0}\mid  + \sum_{k=0}^\infty \mid A_{n_0} \mid q^k = \mid A_{n_0} \mid+ \mid A_{n_0}\mid\sum_{k=0}^\infty q^k
+\end{gather*}
+Which converges.\\
+\underline{Proof for the root test:}
+\begin{gather*}
+    \exists_{q \in (0,1)}:\exists{n_0 \in \mathbb{N}}:\forall_{n>n_0}: \sqrt[n]{\mid a_n \mid} \leq q\\
+    \sqrt[n]{a_n}\leq q \iff \mid a_n \mid \leq q^n\\
+    \sum_{k=0}^\infty \mid a_k \mid  \leq A_{n_0} + \sum_{k=0}^\infty q^k 
+\end{gather*}
 \subsection{Construction of the exponential function}
 \end{document}
+
