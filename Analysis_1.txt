@@ -14,7 +14,7 @@
 \section{Introduction}
 This is a general summary of the Analysis 1 course I attended. Prerequisites are the general knowledge of arithmetic's and proofing techniques.
 \section{Prerequisites}
-In this section I will go over two proofs necessary for the following course.
+In this section I will go over proofs necessary for the following course.
 \subsection{Bernoulli's inequality}
 \underline{Theorem:}
 \begin{gather*}
@@ -71,6 +71,44 @@ Using induction.\\
     \sum_{k= 0}^{n+1} \binom{n}{k}\binom{n}{k-1} a^k b^{n+1-k} =     \sum_{k= 0}^{n+1} \binom{n+1}{k} a^k  b^{n+1-k} 
 \end{gather*}
 \newpage
+\subsection{Inequality of the arithmetic and geometric mean}
+For a set of non negative numbers $X$:\\
+\begin{gather*}
+    \Bar{x}_{\text{arithm}} = \sum_{k=1}^{n} \frac{x_k}{n} \geq \sqrt[n]{\prod _{k=1}^n x_k} = \Bar{x}_{\text{geom}}
+\end{gather*}
+\underline{Proof:}\\
+\underline{Proposition:}
+\begin{gather*}
+    n= 2\\
+    \frac{x_1 + x_2}{2} \geq \sqrt{x_1 x_2}\\
+    \frac{x_1 + x_2}{2}^2 \geq x_1 x_2\\
+    \frac{1}{4}(x_1^2 + 2x_1 x_2 + x_2^2) -x_1 x_2 \geq 0\\
+    \frac{1}{4}(x_1^2 - 2x_1 x_2 + x_2^2) > 0, \forall_{x \neq y}
+\end{gather*}
+\underline{Inductive step:} $n \to 2n$
+\begin{gather*}
+    \sum_{k=1}^{2n} \frac{x_k}{2n} = \frac{\sum_{k=1}^n x_k + \sum_{k=n+1}^{2n} x_k}{2} :=  
+    \frac{\Bar{x}_{\text{arithm}} + \Bar{y}_{\text{arithm}}}{2}\\
+    \frac{\Bar{x}_{\text{arithm}} + \Bar{y}_{\text{arithm}}}{2} \geq \sqrt{\Bar{x}_{\text{arithm}}  \Bar{y}_{\text{arithm}}} \geq
+    \sqrt{\Bar{x}_{\text{geom}}  \Bar{y}_{\text{geom}}}
+\end{gather*}
+\underline{Inductive step:} $n \to n-1$
+\begin{gather*}
+    \Bar{x}_{\text{arithm}} \geq \Bar{x}_{\text{geom}}\\
+    \text{Set: } x_m = \Bar{x}_{\text{arithm}}, \forall_{m>n}\\
+    \Bar{x}_{\text{arithm}} = \sum_{k=1}^n \frac{x_k}{n} = \sum_{k=1}^n \frac{\frac{m}{n} x_k}{m} = \frac{\sum_{k=1}^n x_k+ \frac{m-n}{n}\sum_{k=1}^n x_k}{m} =\\
+    \frac{\sum_{k=1}^n x_k+ (m-n)\Bar{x}_{\text{arithm}}}{m} = \sum_{k=1}^m \frac{x_k}{m} \geq 
+    \sqrt[m]{\prod_{k=1}^n x_k \Bar{x}_{\text{arithm}}^{m-n}}\\
+    \Bar{x}_{\text{arithm}}^m \geq \prod_{k=1}^n x_k \Bar{x}_{\text{arithm}}^{m-n}\\
+    \Bar{x}_{\text{arithm}} \geq \Bar{x}_{\text{geom}}
+    \end{gather*}
+\subsection{Triangle inequality}
+\begin{gather*}
+    \mid x +y \mid \leq \mid x \mid + \mid y \mid\\
+    \mid x +y \mid ^2 = (x+y)^2 \leq (\mid x \mid + \mid y \mid)^2\\
+    x^2 + 2xy +y^2 \leq x^2 + 2 \mid xy\mid + y^2\\
+    x \leq \mid x\mid
+\end{gather*}
 \section{Convergence of sequences and series}
 \subsection{Definitions}
 \underline{Def:} A sequence $(a_n)_{n\in \mathbb{N}}$ or in short form $(a_n)$ us a function from the natural numbers to the real or rational numbers, $a:\mathbb{N} \xrightarrow[]{} \mathbb{R}$ or $\mathbb{Q}$.
@@ -309,4 +347,24 @@ Which converges.\\
 \end{gather*}
 We know know that $(S_n)$ is bounded and monoton decreasing, so it must converge.
 \subsection{Construction of the exponential function}
+\underline{Theorem:} The sequence $(e_n)$ converges, with:
+\begin{gather*}
+    e_n = \bigg( 1+\frac{1}{n} \bigg)^n
+\end{gather*}
+Showing that $(e_n)$ is monoton increasing:
+\begin{gather*}
+    \frac{e_{n+1}}{e_n} = \frac{(\frac{n+2}{n+1})^{n+1}}{(\frac{n+1}{n})^n} = \frac{(n+2)^{n+1}}{n^n(n+1)} \geq \frac{(n+2)^n}{n^n}>1
+\end{gather*}
+Showing that $(e_n)$ is bounded:
+\begin{gather*}
+    e_n = \bigg ( 1+ \frac{1}{n} \bigg )^n \geq 1 + \frac{1}{n}n = 2\\
+    e_n = \bigg ( 1 +\frac{1}{n}\bigg)^n = \sum_{k=0}^n \binom{n}{k} \bigg (\frac{1}{n} \bigg)^k = 
+    \sum_{k=0}^n \frac{n!}{k!(n-k)!n^k} \leq \\
+    1+ \sum_{k=0}^n \frac{1}{k!} <  1+ \sum_{k=0}^n \bigg( \frac{1}{2} \bigg)^n \xrightarrow[]{n \to \infty} 3\\
+\end{gather*}
+Denote:
+\begin{gather*}
+    \lim_{n \to \infty} e_n := e 
+\end{gather*}
+
 \end{document}
