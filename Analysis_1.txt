@@ -149,7 +149,7 @@ Suppose:
     \forall_{n\geq n_0}: \mid a_n \mid < \mid a \mid +1\\
     c := \max \{ \mid a_1\mid, \mid a_2 \mid, ... , \mid a_{n_0-1}\mid, \mid a\mid +1 \} 
 \end{gather}
-\subsection{General arithmetic's for convergent sequences}
+\subsection{Limit theorems}
 For all convergent sequences $(a_n), (b_n)$ holds: 
 \begin{gather*}
     \forall_{(a_n),(b_n)}: \lim_{n \to \infty} a_n = a \land \lim_{n \to \infty} b_n = b:\\
@@ -207,8 +207,8 @@ and define the set of real numbers $\mathbb{R}$ as all the sets of all equivalen
     \text{transitivity: } a_n - b_n \xrightarrow[]{n \to \infty} 0 \land b_n - a_n \xrightarrow[]{n \to \infty} 0\\
     a_n - c_n = a_n -b_n + b_n -c_n \xrightarrow[]{n \to \infty} 0
 \end{gather*}
-We have now shown that this is an equivalence relation and due to the arithmetic's for convergent series we show that all the axioms for the real numbers are given by this set. \\\\
-\underline{Theorem:} Every convergent sequence is a Cauchy sequence.
+We have now shown that this is an equivalence relation and due to the arithmetic's for convergent series it is easy to show that all the axioms for the real numbers are given by this set. \\\\
+\underline{Theorem:} Every convergent sequence is a Cauchy sequence.\\
 \underline{Proof:}
 \begin{gather*}
     \exists n_0 \in \mathbb{N}: \forall_{n\geq n_0}: \mid a_n -a \mid < \frac{\epsilon}{2} \land 
@@ -217,7 +217,7 @@ We have now shown that this is an equivalence relation and due to the arithmetic
     \mid a_n - a \mid + \mid a_m -a \mid = \mid a_n - a \mid + \mid a -a_m \mid \geq \mid a_n -a + a - a_m \mid < \epsilon
 \end{gather*}
 \underline{Theorem:} In $\mathbb{R}$ every Cauchy Sequence converges.\\
-\underline{Proof:} A proof will follow in the coming sections.\\
+\underline{Proof:} This follows directly from the construction of the real numbers.\\
 \underline{Note:} This holds for all complete fields.
 \subsection{Subsequences and accumulation points}
 \underline{Def:} A subsequence $(a_{n_i})$ is a selection of elements of the sequnce.
@@ -327,6 +327,7 @@ If $(a_n)$ is monoton decreasing and converges to 0, than the series $S_n$ conve
 \begin{gather*}
     \lim_{n \to \infty} \sum_{k=0}^n = \lim_{n \to \infty} \frac{1-q^{n+1}}{1-q} = \frac{1}{1-q}
 \end{gather*}
+Generalized ratio test:
 \begin{gather*}
     \forall_{n>n_0} \mid \frac{a_{n+1}}{a_n} \mid  \leq q\\
     \mid a_{n} \mid \leq q\mid a_{n-1} \mid \implies 
@@ -343,28 +344,75 @@ Which converges.\\
 \underline{Proof of the Leibniz test:}
 \begin{gather*}
     S_{2n-1} = \sum_{k=0}^{2n-1} (-1)^k s_k = \sum_{k=0}^{n-1} (s_{2k+1}-s_{2k})>0\\
-    S_{2n-1} =  \sum_{k=0}^{2n-1} (-1)^k s_k = s_0 + \sum_{k=1}^{n-1} (s_{2k} -s_{2k-1} -s_{n-1}<s_0
+    S_{2n-1} =  \sum_{k=0}^{2n-1} (-1)^k s_k = s_0 + \sum_{k=1}^{n-1} (s_{2k} -s_{2k-1}) -s_{n-1}<s_0
 \end{gather*}
 We know know that $(S_n)$ is bounded and monoton decreasing, so it must converge.
 \subsection{Construction of the exponential function}
-\underline{Theorem:} The sequence $(e_n)$ converges, with:
+The exponential functrion is defined as:
 \begin{gather*}
-    e_n = \bigg( 1+\frac{1}{n} \bigg)^n
+    E_n(x) = \sum_{k=0}^n\frac{x^k}{k!}\\
+    \exp (x) = \sum_{k=0}^\infty \frac{x^k}{k!}
 \end{gather*}
-Showing that $(e_n)$ is monoton increasing:
+We will now show that this function converges for all $x \in \mathbb{R}$.
+Using the generalized ratio test:
 \begin{gather*}
-    \frac{e_{n+1}}{e_n} = \frac{(\frac{n+2}{n+1})^{n+1}}{(\frac{n+1}{n})^n} = \frac{(n+2)^{n+1}}{n^n(n+1)} \geq \frac{(n+2)^n}{n^n}>1
+    e_n(x) = \frac{x^k}{k!}\\
+    \frac{\mid e_{k+1}\mid}{\mid e_k \mid} = \frac{\mid x^{k+1} \mid k!}{\mid x^k \mid (k+1)!} = \frac{\mid x \mid}{k+1}\\
+    \text{Set: } k_0>x-1:\forall_{k>k_0}: \frac{x}{k+1} \leq \frac{x}{k_0+1} < 1
 \end{gather*}
-Showing that $(e_n)$ is bounded:
+A different expression of the exponential function:
 \begin{gather*}
-    e_n = \bigg ( 1+ \frac{1}{n} \bigg )^n \geq 1 + \frac{1}{n}n = 2\\
-    e_n = \bigg ( 1 +\frac{1}{n}\bigg)^n = \sum_{k=0}^n \binom{n}{k} \bigg (\frac{1}{n} \bigg)^k = 
-    \sum_{k=0}^n \frac{n!}{k!(n-k)!n^k} \leq \\
-    1+ \sum_{k=0}^n \frac{1}{k!} <  1+ \sum_{k=0}^n \bigg( \frac{1}{2} \bigg)^n \xrightarrow[]{n \to \infty} 3\\
+    \exp(x) = \lim_{n \to \infty} \bigg( 1 + \frac{x}{n} \bigg ) ^n 
 \end{gather*}
-Denote:
+\underline{Proof:}
 \begin{gather*}
-    \lim_{n \to \infty} e_n := e 
+    \bigg( 1 + \frac{x}{n} \bigg ) ^n = \sum_{k=0}^n \binom{n}{k}\frac{x^k}{n^k} = \sum_{k=0}^n \frac{x^k n! }{n^k k!(n-k)!}=\\
+    1 + x + \sum_{k = 2}^n \frac{x^k}{k!}\prod_{j = 1}^{k-1} \bigg(1-\frac{j}{n} \bigg) \leq E_n(x)\\
+    \limsup_{n \to \infty} \bigg( 1 + \frac{x}{n} \bigg ) ^n \leq  \limsup_{n \to \infty}E_n(x)
 \end{gather*}
-
+\begin{gather*}
+     1 + x + \sum_{k = 2}^n \frac{x^k}{k!}\prod_{j = 1}^{k-1} \bigg(1-\frac{j}{n} \bigg) \leq \bigg(1 + \frac{x}{n}\bigg)^n\\
+     \text{Set: } c_n = \prod_{j = 1}^{k-1} \bigg(1-\frac{j}{n} \bigg) \xrightarrow[]{n \to\infty} = 1\\
+     E_m(x)  \leq \liminf_{n \to \infty} \bigg(1 + \frac{x}{n}\bigg)^n\\
+    \exp(x)  = \lim_{n \to \infty} \bigg(1 + \frac{x}{n}\bigg)^n 
+\end{gather*}
+\underline{Functional equation:}
+\begin{gather*}
+    \exp (x+y) = \exp(x)\exp(y)\\
+    \bigg ( 1 + \frac{x}{n}\bigg) \bigg( 1 + \frac{y}{n} \bigg)^n = \bigg (1 + \frac{x+y}{n} + \frac{xy}{n^2}  \bigg ) ^n = \\
+    \bigg( 1 + \frac{x+y}{n} \bigg )^n\bigg( 1 + \frac{xy}{n(n+x+y)} \bigg)^n \xrightarrow[]{n \to \infty}\\
+    \text{Note that:} \frac{xy}{n(n+x+y)} \xrightarrow[]{n \to \infty} = 0 \land \exp(0) =\sum_{k=0}^\infty \frac{0^k}{k!} = 1\\
+    \exp(x+y)\exp(0) = \exp(x+y)
+\end{gather*}
+\underline{Lemma:}
+\begin{gather*}
+    \exp(-x) = \frac{1}{\exp(x)}\\
+    \exp(-x)\exp(x) = exp(x-x)  = 1 \iff \exp(-x) = \frac{1}{\exp(x)}
+\end{gather*}
+\underline{Lemma:}
+\begin{gather*}
+    \exp(x) > 0\\
+    \forall_{x\geq 0}: \exp(x) \geq 1+x\\
+    \forall_{x< 0}: \exp(x) = \frac{1}{\exp(-x)}
+\end{gather*}
+\underline{Lemma:}
+\begin{gather*}
+    \lim_{x \to \infty}\exp(x) = \infty, \exp(x) < x\\
+    \lim_{x \to -\infty}\exp(x) = 0, \exp(x)> \frac{1}{x}\\
+    \lim_{x \to \infty} \frac{x^n}{e^x} = 0\\
+    \exp(x) > \frac{x^{+1}}{(n+1)!}\\
+    \frac{x^n}{\exp(x)} \leq \frac{(n+1)!}{x} \xrightarrow[]{x \to \infty} 0
+\end{gather*}
+\subsection{Limits of functions and continuity}
+\underline{Def:} An interval I is called open in $\mathbb{R}$, iff
+\begin{gather*}
+    \forall_{x \in I}\exists_{\delta > 0}: [x-\delta,x + \delta] \subset I 
+\end{gather*}
+\underline{Def:} An interval I is called closed, iff it's not open.\\
+\underline{Note:} This will become severely important in Analysis 2 .\\\\
+\underline{Def:} For a function $f: I \to \mathbb{R}$ and  an open interval I g is called limit of I, iff
+\begin{gather*}
+    \forall_{(x_n) \subset I \setminus \{a\}}: \lim_{n \to \infty} x_n = a \implies \lim_{n \to \infty}f(x_n) = g \iff \\
+    \forall_{\epsilon>0}:\exists_{\delta > 0}:\forall_{x\in I\setminus{a}}: \mid x-a\mid \implies \mid f(x)-g \mid < \epsilon
+\end{gather*}
 \end{document}
