@@ -81,7 +81,7 @@ For a set of non negative numbers $X$:\\
 \begin{gather*}
     n= 2\\
     \frac{x_1 + x_2}{2} \geq \sqrt{x_1 x_2}\\
-    \frac{x_1 + x_2}{2}^2 \geq x_1 x_2\\
+    \bigg(\frac{x_1 + x_2}{2}\bigg)^2 \geq x_1 x_2\\
     \frac{1}{4}(x_1^2 + 2x_1 x_2 + x_2^2) -x_1 x_2 \geq 0\\
     \frac{1}{4}(x_1^2 - 2x_1 x_2 + x_2^2) > 0, \forall_{x \neq y}
 \end{gather*}
@@ -111,7 +111,8 @@ For a set of non negative numbers $X$:\\
 \end{gather*}
 \section{Convergence of sequences and series}
 \subsection{Definitions}
-\underline{Def:} A sequence $(a_n)_{n\in \mathbb{N}}$ or in short form $(a_n)$ us a function from the natural numbers to the real or rational numbers, $a:\mathbb{N} \xrightarrow[]{} \mathbb{R}$ or $\mathbb{Q}$.
+\underline{Def:} A sequence $(a_n)_{n\in \mathbb{N}}$ or in short form $(a_n)$ is a function from the natural numbers to the real  numbers, $a:\mathbb{N} \xrightarrow[]{} \mathbb{R}$.\\
+(Technically the rational numbers as the real numbers are not formally constructed, without the knwoledge of Analysis 1)
 \\\\
 \underline{Def:} A sequence is bounded, iff:
 \begin{gather*}
@@ -124,6 +125,7 @@ For a set of non negative numbers $X$:\\
     \text{monotone increasing, iff:  } \forall_{n \in \mathbb{N}}: a_n \leq a_{n+1}\\
     \text{monotone decreasing, iff:  } \forall_{n \in \mathbb{N}}: a_n \leq a_{n+1}
 \end{gather*}
+\underline{Note:} If a sequence is not convergent its denoted $\lim_{n \to \infty} a_n = /$.\\
 \underline{Def:} A sequence is convergent:
 \begin{gather*}
     \forall_{\epsilon > 0}:\exists_{n_0 \in \mathbb{N}}: \forall_{n \geq n_0}: \mid a_n - a\mid < \epsilon \iff\\  \lim_{n \to \infty} a_n = a \iff \\
@@ -144,17 +146,18 @@ Suppose:
 \end{gather*}
 \underline{Note:} Every convergent sequence is bounded.\\
 \underline{Proof:}
-\begin{gather}
+\begin{gather*}
     \text{Set: } \epsilon = 1, \exists_{n_0 \in \mathbb{N}}: \forall_{n>n_0}: \mid a_n - a\mid < 1\\
     \forall_{n\geq n_0}: \mid a_n \mid < \mid a \mid +1\\
     c := \max \{ \mid a_1\mid, \mid a_2 \mid, ... , \mid a_{n_0-1}\mid, \mid a\mid +1 \} 
-\end{gather}
+\end{gather*}
 \subsection{Limit theorems}
 For all convergent sequences $(a_n), (b_n)$ holds: 
 \begin{gather*}
     \forall_{(a_n),(b_n)}: \lim_{n \to \infty} a_n = a \land \lim_{n \to \infty} b_n = b:\\
     \lim_{n \to \infty} a_n + b_n = a+b \\
-    \lim_{n \to \infty} a_n b_n = ab 
+    \lim_{n \to \infty} a_n b_n = ab\\
+    \lim_{n \to \infty} \frac{1}{a_n} = \frac{1}{a}, a_n,a \neq 0
 \end{gather*}
 \underline{Proof: } \\
 \begin{gather*}
@@ -178,6 +181,11 @@ For all convergent sequences $(a_n), (b_n)$ holds:
         n_0 := \max \{n_1,n_2 \} \\
         \forall_{n\geq n_0}:  \mid a_n - a \mid \mid b_n \mid + \mid b_n -b\mid\mid a  \mid <
         \mid b_n \mid\frac{\epsilon }{2c} +  \mid a \mid\frac{\epsilon}{2\mid a \mid} < \epsilon
+\end{gather*}
+\begin{gather*}
+    \lim_{n \to \infty} \frac{1}{a_n} = \frac{1}{a}; a_n,a \neq 0\\
+    \mid a_n-a \mid < \epsilon \land \exists_{n_0 \in \mathbb{N}}:\forall_{n> n_0} \mid a_n \mid > \frac{a}{2}\\
+    \left |  \frac{1}{a_n} - \frac{1}{a} \right | = \left| \frac{a- a_n}{a_n a} \right | < \left | \frac{\epsilon_1}{a_n a} \right | < \frac{2\epsilon_1}{a^2} < \epsilon
 \end{gather*}
 \subsection{Cauchy series}
 \underline{Def:} $(a_n)$ is a Cauchy-series, iff
@@ -238,6 +246,13 @@ We have now shown that this is an equivalence relation and due to the arithmetic
     \sup X := max \{x\in \mathbb{R} \mid \forall_{n \in \mathbb{N}}: x \leq a_n \} \\
     \inf X := min \{x\in \mathbb{R} \mid \forall_{n \in \mathbb{N}}: x \geq a_n \} \\
 \end{gather*}
+\underline{Bolzano-Weierstrass theorem:} Every bounded sequence has a convergent subsequence.\\
+\underline{Proof:}\\
+\begin{gather*}
+    s := \inf(x_n), S := \sup(x_n)\\
+    I_1 = \bigg [s, \frac{s + S}{2} \bigg], I_2 = \bigg[\frac{s +S }{2}, S\bigg],\\
+    \text{ choose I so that it contains infinitely many elements and repeat.}
+\end{gather*}
 \subsection{Infinite series}
 For a sequence $(a_k)$ the sum $\sum_{k=0}^{\infty} a_k $ is called a series.\\
 \underline{Def:} A series is called convergent, iff
@@ -282,7 +297,7 @@ We know that $(S_n)$ is a Cauchy sequence.
 \begin{gather*}
     \mid s^+_n \mid \leq \mid s_n \mid, \mid s^-_n \mid \leq \mid s_n \mid
 \end{gather*}
-\underline{Riemann rearrangement theorem:} For an absolutely convergent series, if you rearrange the order of the elements $(s_n)$ the limit does \underline{not} change.
+\underline{Riemann rearrangement theorem:} For an  \underline{absolutely} convergent series, if you rearrange the order of the elements $(s_n)$ the limit does not change.
 \begin{gather*}
     \sum_{k=0}^\infty s_n = \sum_{k=0}^\infty s_{\sigma(n)}, \sigma(n): \mathbb{N} \to \mathbb{N}, \sigma \text{ bijective}
 \end{gather*}
@@ -348,7 +363,7 @@ Which converges.\\
 \end{gather*}
 We know know that $(S_n)$ is bounded and monoton decreasing, so it must converge.
 \subsection{Construction of the exponential function}
-The exponential functrion is defined as:
+The exponential function is defined as:
 \begin{gather*}
     E_n(x) = \sum_{k=0}^n\frac{x^k}{k!}\\
     \exp (x) = \sum_{k=0}^\infty \frac{x^k}{k!}
@@ -364,17 +379,27 @@ A different expression of the exponential function:
 \begin{gather*}
     \exp(x) = \lim_{n \to \infty} \bigg( 1 + \frac{x}{n} \bigg ) ^n 
 \end{gather*}
-\underline{Proof:}
+\underline{Proof:}\\
+First step:
 \begin{gather*}
-    \bigg( 1 + \frac{x}{n} \bigg ) ^n = \sum_{k=0}^n \binom{n}{k}\frac{x^k}{n^k} = \sum_{k=0}^n \frac{x^k n! }{n^k k!(n-k)!}=\\
-    1 + x + \sum_{k = 2}^n \frac{x^k}{k!}\prod_{j = 1}^{k-1} \bigg(1-\frac{j}{n} \bigg) \leq E_n(x)\\
-    \limsup_{n \to \infty} \bigg( 1 + \frac{x}{n} \bigg ) ^n \leq  \limsup_{n \to \infty}E_n(x)
+    \bigg (1 + \frac{x}{n}\bigg )^n \leq \sum_{k=0}^n \frac{x^k}{k!} \leq \bigg (1 + \frac{x}{n} \bigg )^{n+1}\\
 \end{gather*}
 \begin{gather*}
-     1 + x + \sum_{k = 2}^n \frac{x^k}{k!}\prod_{j = 1}^{k-1} \bigg(1-\frac{j}{n} \bigg) \leq \bigg(1 + \frac{x}{n}\bigg)^n\\
-     \text{Set: } c_n = \prod_{j = 1}^{k-1} \bigg(1-\frac{j}{n} \bigg) \xrightarrow[]{n \to\infty} = 1\\
-     E_m(x)  \leq \liminf_{n \to \infty} \bigg(1 + \frac{x}{n}\bigg)^n\\
-    \exp(x)  = \lim_{n \to \infty} \bigg(1 + \frac{x}{n}\bigg)^n 
+    \bigg (1  + \frac{x}{n}\bigg)^n = \sum_{k=0}^n \binom{n}{k} \frac{x^k}{n^k} = \sum_{k=0}^n \frac{n!x^k}{(n-k)!k!n^k}\leq \sum_{k=0}^n \frac{x^k}{k!}
+\end{gather*}
+\begin{gather*}
+    \bigg ( 1 + \frac{x}{n} \bigg)^{n+1} = \sum_{k= 0}^{n+1} \binom{n+1}{k}\frac{x^k}{n^k} = 1 + \sum_{k = 1}^{n+1} \binom{n+1}{k}\frac{x^k}{n^k} = 1 + \sum_{k = 0}^{n} \binom{n+1}{k+1}\frac{x^{k+1}}{n^{k+1}} = \\
+    1 + \sum_{k= 0}^n \frac{(n+1)!x^{k+1}}{(k+1)!(n-k)!n^{k+1}} \geq 1 + \sum_{k = 0}^n \frac{(n-(k-1))^{k+1}}{n^{k+1}}\frac{x^{k+1}}{(k+1)!} = \\
+    1+ \sum_{k=0}^n \bigg( 1 - \frac{(k+1)(k-1)}{n} \bigg) \frac{x^{k+1}}{(k+1)!} = \\
+    1 +\sum_{k= 0}^n \frac{x^{k+1}}{(k+1)!} + \sum_{k = 0}^n -\frac{(k+1)(k-1)}{n}\frac{x^{k+1}}{(k+1)!} = \sum_{k = 0}^{n+1} \frac{x^k}{k!} - \frac{1}{n} \bigg( -x^n + 0 + x^n - \frac{x^k}{n!} \bigg) \geq \\
+    \sum_{k = 0}^n \frac{x^k}{k!}
+\end{gather*}
+Showing that:  $\lim_{n \to \infty} \bigg(1 + \frac{x}{n}\bigg)^n = \lim_{n \to \infty} \bigg(1 + \frac{x}{n}\bigg)^{n+1}$
+\begin{gather*}
+    \lim_{n \to \infty} \bigg(1 + \frac{x}{n}\bigg)^n = a\\
+    \lim_{n \to \infty} \bigg(1 + \frac{x}{n}\bigg)^{n+1} = b\\
+    \lim_{n \to \infty} \frac{\bigg(1 + \frac{x}{n}\bigg)^{n+1}}{\bigg(1 + \frac{x}{n}\bigg)^{n+1}} =  \lim_{n \to \infty} 1 + \frac{x}{n} = 1\\
+    \lim_{n \to \infty} \frac{b}{a} = 1 \iff a = b
 \end{gather*}
 \underline{Functional equation:}
 \begin{gather*}
@@ -397,11 +422,16 @@ A different expression of the exponential function:
 \end{gather*}
 \underline{Lemma:}
 \begin{gather*}
-    \lim_{x \to \infty}\exp(x) = \infty, \exp(x) < x\\
-    \lim_{x \to -\infty}\exp(x) = 0, \exp(x)> \frac{1}{x}\\
+    \lim_{x \to \infty}\exp(x) = \infty, \exp(x) \geq x, \forall_{x>0}\\
+    \lim_{x \to -\infty}\exp(x) = 0, \exp(x) \leq \frac{1}{x}, \forall_{x<0}\\
     \lim_{x \to \infty} \frac{x^n}{e^x} = 0\\
     \exp(x) > \frac{x^{+1}}{(n+1)!}\\
     \frac{x^n}{\exp(x)} \leq \frac{(n+1)!}{x} \xrightarrow[]{x \to \infty} 0
+\end{gather*}
+\subsection{Definition of the logarithm:}
+The logarithmic function is defined as:
+\begin{gather*}
+    \log(x) = \exp^{-1}(x)
 \end{gather*}
 \subsection{Limits of functions and continuity}
 \underline{Def:} An interval I is called open in $\mathbb{R}$, iff
@@ -410,9 +440,176 @@ A different expression of the exponential function:
 \end{gather*}
 \underline{Def:} An interval I is called closed, iff it's not open.\\
 \underline{Note:} This will become severely important in Analysis 2 .\\\\
-\underline{Def:} For a function $f: I \to \mathbb{R}$ and  an open interval I g is called limit of I, iff
+\underline{Def:} Let $f: I \to \mathbb{R}$ and I be open. $g$ is called limit in $a$ or $\lim_{x \to a}f(x)$, iff 
 \begin{gather*}
-    \forall_{(x_n) \subset I \setminus \{a\}}: \lim_{n \to \infty} x_n = a \implies \lim_{n \to \infty}f(x_n) = g \iff \\
-    \forall_{\epsilon>0}:\exists_{\delta > 0}:\forall_{x\in I\setminus{a}}: \mid x-a\mid \implies \mid f(x)-g \mid < \epsilon
+    (\text{I}) \forall_{(x_n) \subset I \setminus \{a\}}: \lim_{n \to \infty} x_n = a \implies \lim_{n \to \infty}f(x_n) = g \iff \\
+    (\text{II}) \forall_{\epsilon>0}:\exists_{\delta > 0}:\forall_{x\in I\setminus\{a\}}: \mid x-a\mid < \delta \implies \mid f(x)-g \mid < \epsilon
+\end{gather*}
+\underline{Proof:}
+\begin{gather*}
+    \text{(I)} \implies \text{(II) For an arbitrary sequence $(x_n)$ choose: } \forall_{\epsilon>0}: \mid f(x_{n_0}) - g \mid < \epsilon: \delta = \mid x_{n_0}-a \mid\\
+    \text{(II)} \implies \text{(I) Let $(x_n)$ be an arbitrary sequence with:} \lim_{n \to \infty} x_n= a\\
+    \forall_{\epsilon>0}:\forall_{\delta > 0}:\exists_{n_0 \in \mathbb{N}}:\forall_{n>n_0}: \mid x_n - a \mid < \delta \implies \mid f(x_n) - g \mid < \epsilon \implies \lim_{n \to \infty} f(x_n) = g 
+\end{gather*}
+\underline{Theorem:} Let $I$ be open and  $f,g: I \to \mathbb{R}$, then:
+\begin{gather*}
+    \lim_{x \to a }f(x)= f , \lim_{x \to a}g(x) = g\\
+    \lim_{x \to a } f(x) +g(x) = f+g\\
+    \lim_{x \to a }f(x)g(x) = fg\\
+    \lim_{x \to a } \frac{1}{f(x)} = \frac{1}{f}, f(x) \neq 0 
+\end{gather*}
+This follows trivially from the limit theorems.\\\\\\
+\underline{Def:} A function f is continuous in $a$, iff $\lim_{x \to a } = f(a)$.\\
+\underline{Def:} A function f is continuous on an interval $I$, iff $\forall_{a \in I } \lim_{x \to a } = f(a)$\\
+\underline{Theorem:} For two continuous functions on $I$ $f,g$: $ f+g, fg, f\circ g$ are also continuous.\\
+\underline{Proof:}
+\begin{gather*}
+   f +g, \text{follows from the limit theorems}\\
+   fg,  \text{follows from the limit theorems}\\
+   f \circ g, \forall_{(x_n)}: \lim_{n \to \infty} x_n = a \implies \lim_{n \to \infty} g(x_n) = g(a) \implies \lim_{n \to \infty} f(g(x_n)) = f(g(a))
+\end{gather*}
+\underline{Note:} For a continuous and bijectiv  function $f$ and $f^{-1}$ is also bijective, then $f^{-1}$ is also continuous.\\
+\underline{Proof:}
+\begin{gather*}
+    \forall_{\epsilon > 0}:\exists_{\delta>0}: \mid x - a \mid < \delta \implies \mid f(x) -f(a) \mid < \epsilon\\
+    \text{Set:} \forall_{\epsilon>0}:\exists_{n_0 \in \mathbb{N}}: \frac{1}{n_0}< \epsilon: \epsilon_1 = \min \bigg \{ \frac{1}{n},\delta\bigg\}\\
+    \forall_{\epsilon_1 >0 }:\exists_{\epsilon >0}: \mid x -a \mid < \epsilon \implies \mid f^{-1}(x) - f^{-1}(a)\mid < \epsilon_1
+\end{gather*}
+\underline{Intermediate value theorem:} Let $f: [a,b] \to \mathbb{R}$ and f be continuous on $[a,b]$:
+\begin{gather*}
+    f(a) < c < f(b) \implies \exists_{\phi \in (a,b)}:f(\phi) = c
+\end{gather*}
+\underline{Proof:}
+\begin{gather*}
+    M := \{ x \in [a,b] \mid f(x) \leq c \}, a \in M \neq \emptyset\\
+    \phi := \sup M, \text{this exists because $M$ is bounded by $b$}\\
+    (x_n) \subset M: \lim_{n \to \infty} x_n = \phi \implies  \lim_{n \to \infty} f(x_n) = f( \phi) \leq c\\
+    N := \{ x \in [a,b]\mid f(x) \geq c \}, b \in N \neq \emptyset\\
+    (y_n) \subset N: \lim_{n \to \infty} y_n = \phi \implies  \lim_{n \to \infty} f(y_n) = f( \phi) \geq c
+\end{gather*}
+\underline{Max-Min theorem:} Let $f$ be continuous on $[a,b]$, then $\exists_{x_0,x_1 \in [a,b]} f(x_0) = \max_{x \in [a,b]} f(x) \land f(x_1) = \min_{x \in [a,b]} f(x)$\\
+\underline{Proof:}\\
+\underline{Lemma:} $f$ is bounded on $[a,b]$
+\begin{gather*}
+    \text{Proposition: f is not bounded} \lim_{x \to x_0} f(x) = / , x_0 \in \mathbb{R} \\
+    \lim_{x \to x_0} f(x) = f(x) \bot  
+\end{gather*}
+\begin{gather*}
+    m := \sup f(x), m-\frac{1}{n} \leq f(x_n) \leq m\\
+    x_n \xrightarrow[]{n \to \infty} x_0 \implies f(x_n) \xrightarrow[]{n \to \infty} m\\
+    \text{The minimum is constructed in the same way.}
+\end{gather*}
+\underline{Def:} A function is uniform continuous on $[a.b]$, iff 
+\begin{gather*}
+    \forall_{\epsilon>0}:\forall_{x_0 \in [a,b]}:\exists_{\delta >0}: \mid x - x_0\mid < \delta \implies \mid f(x) - f(x_0) \mid < \epsilon
+\end{gather*}
+\subsection{Derivatives}
+\underline{Def:} A function $f: I \to \mathbb{R}$ is called differentiable in $x$, iff $f'(x) :=\lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$ converges.\\
+\underline{Note:} A more generalized definition would be:
+\begin{gather*}
+    \lim_{n \to  \infty} \frac{f(x_n) - f(x) - L(x_n -x)}{\mid x - x_n\mid } = 0, \\
+    L(a +b) = L(a) + L(b) \land L(\lambda a ) = \lambda L(a)
+\end{gather*}
+\underline{Theorem:} Let $f$ be differentiable in $x_0$,l then $f$ is continuous in $x_0$.\\
+\underline{Proof:}
+\begin{gather*}
+    f'(x_0) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h} \implies \lim_{h \to 0} f(x+h) - f(x) = 0 \implies \lim_{h \to 0} f(x+h) = f(x)
+\end{gather*}
+\underline{Lemma:} The derivative is linear:
+\begin{gather*}
+    (f(x) + g(x))' = f'(x) + g'(x)\\
+    (\lambda f(x))' = \lambda f'(x)
+\end{gather*}
+\underline{Proof:}
+\begin{gather*}
+    (f(x) + g(x))' = f'(x) + g'(x)\\
+    \lim_{h \to 0} \frac{(f(x+h) +g(x+h)) - (f(x) + g(x))}{h} = \\\lim_{h \to 0} \frac{f(x+h) -f(x)}{h} + \frac{g(x+h) - g(x)}{h} = f'(x) + g'(x)\\
+    (\lambda f(x))' = \lambda f'(x)\\
+    \lim_{h \to 0} \frac{\lambda f(x+h) - \lamda f(x)}{h} = \lamda f'(x)
+\end{gather*}
+\underline{Rules for differentiation:}
+\begin{gather*}
+    (c)' = 0\\
+    \lim_{h \to 0} \frac{f(x+h) - f(x)}{h} = \lim_{h \to 0} \frac{c -c}{h} = 0
+\end{gather*}
+\begin{gather*}
+    (f(x)g(x))' = f(x)g'(x) + f'(x)g(x)\\
+    \lim_{h \to 0} \frac{f(x+h)g(x+h)-f(x)g(x)}{h} =\\
+    \lim_{h \to 0} \frac{f(x+h)g(x+h) +f(x)g(x+h) - f(x)g(x+h) -f(x)g(x)}{h} =\\
+    \lim_{h \to 0} \frac{g(x+h)(f(x+h)-f(x)) + f(x)(g(x+h)-g(x))}{h}
+\end{gather*}
+\begin{gather*}
+    (f\circ g(x))' = f'(g(x))g'(x)\\
+    \lim_{h \to 0} \frac{f(g(x+h)) - f(g(x))}{h}\\
+    \lim_{x \to x_0} g(x) = z_0\\
+    D(z, z_0) = \left\{
+     \begin{array}{lr}
+       \frac{f(z) - f(z_0)}{z - z_0}, z \neq z_0\\
+       u'(z), z = z_0 \\
+     \end{array}
+   \right.
+\end{gather*}
+\begin{gather*}
+    (c)' = 0\\
+    (x^n)'  = n x ^{n-1}\\
+    (exp(x))'  = exp(x)\\
+    (f(x)g(x))' = f(x)g'(x) + f'(x)g(x)\\
+    (f\circ g(x))' = f'(g(x))g'(x)
+\end{gather*}
+
+\underline{Def:} Let $f$ be differentiable. $f$ has a local maximum [minimum] in $a$, iff:
+\begin{gather*}
+    \exists_{\delta >0}:\forall_{x \in [a,b]} \mid x -a \mid < \delta \implies f(x) \leq  f(a) \\
+    [\exists_{\delta >0}:\forall_{x \in [a,b]} \mid x -a \mid < \delta \implies f(x) \geq  f(a) ]
+\end{gather*}
+\underline{Lemma:} Let $f$ be differentiable and  have a local maximum or minimum in $a$, then $f'(a) = 0$.\\
+\underline{Proof:}
+\begin{gather*}
+    \text{Without loss of generality: let a be a local maximum}\\
+    \forall_{x \in [a-\delta,a]}: \frac{f(x)-f(a)}{x-a} \leq 0\\
+    \forall_{x \in [a,a+\delta]}: \frac{f(x)-f(a)}{x-a} \geq 0\\
+    \text{Let $(x_n) \subset [a-\delta, a + \delta]$ converge to $a$}\\
+    \lim_{n \to \infty} \frac{f(x_n)- f(x)}{x_n - x} = 0
+\end{gather*}
+\underline{Rolle's theorem:} Let $f$ be differentiable on $(a,b)$ and continuous on $[a,b]$ and $f(a) = f(b)$:
+\begin{gather*}
+    \exists_{\phi \in [a,b]}:f'(\phi) = 0
+\end{gather*}
+\underline{Proof:}
+\begin{gather*}
+    \text{Using the Max-Min-theorem:}\\
+    \exists_{x_0,x_1 \in [a,b]} f(x_0) = \max_{x \in [a,b]} f(x) \land f(x_1) = \min_{x \in [a,b]} f(x)\\
+    \text{If $a$ is the local minimum then it cant be the local maximum except: }\\ f(x)  = c \implies f'(x) = 0\\
+    \text{Without loss of generality assume that $x_0 \neq a,b$}\\ \implies\text{ $x_0$ is local maximum $\implies f'(x_0) = 0$ }
+\end{gather*}
+\underline{1. mean value theorem for differential calculus:} Let $f$ be differentiable on $(a,b)$ and continuous on $[a,b]$, then:
+\begin{gather*}
+    \exists_{\phi \in (a,b)}: f'(\phi) = \frac{f(b) - f(a)}{b-a}
+\end{gather*}
+\underline{Proof:}
+\begin{gather*}
+    h(x) := f(x) - \frac{f(b) - f(a)}{b-a}(b-a)\\
+    h(b) = f(b) - \frac{f(b)-f(a)}{b-a}(b-a) = f(a)\\
+    h(a) = f(a) - \frac{f(b)-f(a)}{b-a}(a-a) = f(a) =h(b)\\
+    \text{Rolle's theorem:} \exsits_{\phi \in (a,b)}: h'(\phi) = 0\\
+    h'(\phi) = f'(\phi) - \frac{f(b) - f(a)}{b-a} = 0
+\end{gather*}
+\underline{Theorem:} Let a differentiable function be monotone increasing on $(a,b)$,  $ \iff f'(x) \geq 0 $\\
+\underline{Proof:}
+\begin{gather*}
+    \frac{f(y)- f(x)}{y-x } \geq 0 \implies \lim_{y \to x}\frac{f(y) -f(x)}{y-x}\geq 0\\
+    \exists_{\phi \in (a,b)}: f'(\phi) = \frac{f(b) - f(a)}{b-a} \implies\\
+    f(b) -f(a) = f'(\phi)(b-a) \implies f(b) \geq f(a) \text{, because} f'(\phi)\geq 0
+\end{gather*}
+\underline{2. mean value theorem for differential calculus:} Let $f,g$ be differentiable on $(a,b)$ and continuous on $[a,b]$, then
+\begin{gather*}
+    \exists_{\pji \in (a,b)}: g'(\phi)(f(b)-f(a)) = f'(\phi) (g(b) -g(a))
+\end{gather*}
+\underline{Proof:}
+\begin{gather*}
+    h(x) := (f(b) -f(a))(g(x)-g(a)) - (g(b) - g(a))(f(x) - f(b))\\
+    h(a) = h(b) = 0\\
+    \text{Using Rolle's theorem: } \exists_{\phi \in (a,b)}: h'(\phi) = 0 \\
+    h'(x) = g'(\phi)(f(b) - f(a)) - f'(\phi)(g(b)-g(a))
 \end{gather*}
 \end{document}
